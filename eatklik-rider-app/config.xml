@@ -1,90 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "com.phonegap.ekra"
-    versionCode = "10"
-    version     = "1.0.0" >
-    <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
-    <plugin name="cordova-plugin-geolocation" version="2.1.0" />
-        <!-- <plugin name="cordova-plugin-geolocation" spec="~4">
-        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="This app uses your location for maps." />
-    </plugin> -->
-       <!-- <platform name="android">
-        <uses-permission name="android.permission.ACCESS_COARSE_LOCATION" />
-        <uses-permission name="android.permission.ACCESS_FINE_LOCATION" />
-        <uses-permission name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    </platform> -->
-    <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-   <allow-intent href="https://*/*" />
-   <allow-intent href="tel:*" />
-   <allow-intent href="sms:*" />
-   <allow-intent href="mailto:*" />
-   <allow-intent href="geo:*" />
-   <feature name="Geolocation">
-    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-</feature>
-    
-
-  <name>Rider App</name>
-
-  <description>
-      Riders App
-  </description>
-
-  <author href="https://build.phonegap.com" email="support@phonegap.com">
-      Raza Ashraf
-  </author>
-
-</widget>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns   = "http://www.w3.org/ns/widgets"
-    xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.phonegap.rider"
     versionCode = "10"
     version     = "1.0.0" >
@@ -101,5 +17,5 @@
 
   <plugin name="phonegap-plugin-mobile-accessibility" source="npm" />
 
-</widget> -->
+</widget>
 
