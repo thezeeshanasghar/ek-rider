@@ -1,11 +1,9 @@
    var id = parseInt(getParameterByName("id")) || 0;
-
-
-
+   var rider = getObjsFromLocalStorage("Rider");
 $(document).ready(function () {
-loadNewOrder();
+loadNewOrder(id);
 });
-function loadNewOrder() {
+function loadNewOrder(id) {
    
     $.ajax({
         url: SERVER + "order/"+ id,
@@ -23,20 +21,12 @@ function loadNewOrder() {
                   }); 
 
                   if(result.OrderItems == 0) {
-
                     $("#act-order").html(emp);
-
                   }
-                  
-
                   $("#orderitems").html(html);
                   $("#instructions").html(result.Instruction);
                   $("#paymethod").html(result.PayMethod);
                   $("#grandtotal").html('Rs '+result.GrandTotal);
-
-                  
-
-                  
 
               }
         },
@@ -44,4 +34,24 @@ function loadNewOrder() {
             console.log(xhr.responseText);
         }
     });
+}
+
+function AcceptOrder()
+{
+    console.log(rider.Id);
+    $.ajax({
+        url: SERVER + "order/"+ id +"/rider-status/1",
+        type: "PUT",
+        dataType: "json",
+      //  data: {'RiderId':2},
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+               window.location.href = '05. Dashboard.html';
+             
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+
 }

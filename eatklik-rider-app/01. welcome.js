@@ -15,8 +15,8 @@ function login() {
         dataType: "json",
         contentType: "application/json;charset=utf-8",
         success: function (result) {
-          
                localStorage.setItem("Rider", JSON.stringify(result));
+               window.location.href = "05. Dashboard.html";
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);

@@ -1,11 +1,12 @@
+var rider = getObjsFromLocalStorage("Rider");
 $(document).ready(function () {
-
 loadNewOrders();
+window.setInterval("loadNewOrders()", 30000);
 });
 function loadNewOrders() {
    
     $.ajax({
-        url: SERVER + "order/status/3",
+        url: SERVER + "order/rider/"+rider.Id+"/new",
         type: "GET",
         dataType: "json",
         contentType: "application/json;charset=utf-8",
@@ -21,6 +22,7 @@ function loadNewOrders() {
                       html +='<li><img src="img/marker.png"> Khayaban-e-sarwar, DGKhan</li></ul>';
                       html += '<div class="right-panel"><a href="06. new-order.html?id='+order.Id+'"><img class="view" src="img/eye.png"></a></div></section>';
                   }); 
+                  if (result.length > 0)
                   $(".all-orders").html(html);
               }
         },

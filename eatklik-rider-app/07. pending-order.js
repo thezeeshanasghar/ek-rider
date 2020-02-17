@@ -1,9 +1,8 @@
 $(document).ready(function () {
 loadNewOrder();
+
 });
    var id = parseInt(getParameterByName("id")) || 0;
-
-
 
 function loadNewOrder() {
    
