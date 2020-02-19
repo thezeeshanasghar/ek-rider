@@ -40,7 +40,27 @@ function AcceptOrder()
 {
     console.log(rider.Id);
     $.ajax({
-        url: SERVER + "order/"+ id +"/rider-status/1",
+        url: SERVER + "order/"+ id +"/order-status/6",
+        type: "PUT",
+        dataType: "json",
+      //  data: {'RiderId':2},
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+               window.location.href = '05. Dashboard.html';
+             
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+
+}
+
+function RejectOrder()
+{
+    console.log(rider.Id);
+    $.ajax({
+        url: SERVER + "order/"+ id +"/order-status/7",
         type: "PUT",
         dataType: "json",
       //  data: {'RiderId':2},

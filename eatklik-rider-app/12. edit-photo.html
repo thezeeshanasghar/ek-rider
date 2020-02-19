@@ -24,25 +24,34 @@
 			<p>Update Your Photo</p>
 			
 			<div class="profile-pic-photo">
-				<label for="file-input"><img src="img/edit-photo.png"></label>
-				<input id="file-input" type="file" name="">
+					<form class = form id="myForm">
+				<label for="file-input"><img id="output" src="img/edit-photo.png"></label>
+				<input onchange="loadFile(event)" id="file-input" type="file" name="">
+				<div class="bottom-sticky wrapped-bottom-sticky">
+				<button onclick="UpdateRiderPhoto()" class="bottom-panel-btn" type="submit">Save</button>
+				</div>
+					</form>
 			</div>
 
 
 
 
-				<div class="bottom-sticky wrapped-bottom-sticky">
+				<!-- <div class="bottom-sticky wrapped-bottom-sticky">
 					
 					<div class="bottom-panel-btn">	
 						<span class="submit">Save</span>
 					</div>
 
-				</div>
+				</div> -->
 
 		</div>
 
 	</div>
 
 </div>	
+<script src="js/jquery.js"></script>
+	<script src="common.js"></script>
+	<script src="server.js"></script>
+	<script src="12. edit-photo.js"></script>
 </body>
 </html>

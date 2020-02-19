@@ -1,10 +1,11 @@
+var rider = getObjsFromLocalStorage("Rider");
 $(document).ready(function () {
-loadAllOrders();
+loadAllOrders(rider.Id);
 });
-function loadAllOrders() {
+function loadAllOrders(id) {
    
     $.ajax({
-        url: SERVER + "order/status/3",
+        url: SERVER + "order/rider/"+id,
         type: "GET",
         dataType: "json",
         contentType: "application/json;charset=utf-8",
@@ -18,7 +19,8 @@ function loadAllOrders() {
                       html += '<p>Order Amount, Rs. <span>'+order.GrandTotal+'</span></p><p>'+event.toLocaleTimeString('en-US')+', '+event.toLocaleDateString('en-GB', {
                         day: '2-digit', month: 'short', year: 'numeric'
                       }).replace(/ /g, '-')+'</p></div>';
-                      html += '<div class="right-panel"><div class="order-status">New</div><a href="#">view detail</a>';
+                     // html += '<div class="right-panel"><div class="order-status">New</div><a href="16. order-detail.html?'+order.Id+'>view detail</a>';
+                      html += '<div class="right-panel"><div class="order-status">New</div><a href="16. order-detail.html?>view detail</a>';
                       html += '</div></div></section>';         
                   }); 
                   $(".orders").html(html);
