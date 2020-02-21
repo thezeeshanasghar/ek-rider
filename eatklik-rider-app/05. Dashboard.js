@@ -1,5 +1,20 @@
 var rider = getObjsFromLocalStorage("Rider");
 $(document).ready(function () {
+
+
+  $(".burger").click(function(){
+
+      $(".edit-full-wrapper").fadeIn();
+
+  });
+
+  $(".edit-full-wrapper").click(function(){
+
+      $(this).fadeOut();
+
+  });
+
+  
 loadNewOrders();
 window.setInterval("loadNewOrders()", 30000);
 });
@@ -31,3 +46,20 @@ function loadNewOrders() {
         }
     });
 }
+
+
+$(document).ready(function(){
+
+  $(".burger").click(function(){
+
+      $(".edit-full-wrapper").fadeIn();
+
+  });
+
+  $(".edit-full-wrapper").click(function(){
+
+      $(this).fadeOut();
+
+  });
+
+});
