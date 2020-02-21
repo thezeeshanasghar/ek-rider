@@ -40,7 +40,7 @@ function AcceptOrder()
 {
     console.log(rider.Id);
     $.ajax({
-        url: SERVER + "order/"+ id +"/rider-status/1",
+        url: SERVER + "order/"+ id +"/order-status/6",
         type: "PUT",
         dataType: "json",
       //  data: {'RiderId':2},
