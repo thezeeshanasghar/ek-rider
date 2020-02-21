@@ -1,10 +1,11 @@
+var id = parseInt(getParameterByName("id")) || 0;
 $(document).ready(function () {
-loadNewOrder();
+loadNewOrder(id);
 });
-function loadNewOrder() {
+function loadNewOrder(id) {
    
     $.ajax({
-        url: SERVER + "order/15",
+        url: SERVER + "order/"+id,
         type: "GET",
         dataType: "json",
         contentType: "application/json;charset=utf-8",
