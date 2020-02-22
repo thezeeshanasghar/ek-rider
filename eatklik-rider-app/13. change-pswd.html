@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>14. Change Password</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-	
-	<div class="full-wrapper">
-	<div class="header">
-		
-		<div class="wrapper">
-			<img class="left-arrow" src="img/left-arrow.png">
-			<div class="header-heading">Edit Password</div>
-		</div>
+  <head>
+    <title>14. Change Password</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="./change-pswd.js" defer></script>
+    <script src=".//js/jquery.js "></script>
+  </head>
+  <body>
+    <h1 id="dan">danish</h1>
+    <div class="full-wrapper">
+      <div class="header">
+        <div class="wrapper">
+          <img class="left-arrow" src="img/left-arrow.png" />
+          <div class="header-heading">Edit Password</div>
+        </div>
+      </div>
 
-	</div>
+      <div class="edit-pro edit-pswd">
+        <div class="wrapper">
+          <section>
+            <p>Current Password</p>
+            <input
+              id="current-pswd"
+              type="password"
+              name=""
+              placeholder="Enter your current password"
+            />
+          </section>
 
-	<div class="edit-pro edit-pswd">
-		
-		<div class="wrapper">
+          <section>
+            <p>New Password</p>
+            <input id="new-pswd" type="password" name="" />
+          </section>
 
-			<section>
-				<p>Current Password</p>
-				<input type="password" name="" placeholder="Enter your current password">
-			</section>
+          <section>
+            <p>Re-Type New Password</p>
+            <input id="re-pswd" type="password" name="" />
+          </section>
 
-			<section>
-				<p>New Password</p>
-				<input type="password" name="">
-			</section>
-
-			<section>
-				<p>Re-Type New Password</p>
-				<input type="password" name="">
-			</section>
-
-
-
-
-				<div class="bottom-sticky wrapped-bottom-sticky">
-					
-					<div class="bottom-panel-btn">	
-						<span class="submit">Update</span>
-					</div>
-
-				</div>
-
-		</div>
-
-	</div>
-
-</div>	
-</body>
+          <div class="bottom-sticky wrapped-bottom-sticky">
+            <div class="bottom-panel-btn">
+              <span class="submit">Update</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
