@@ -2,8 +2,9 @@
 <html>
 <head>
 	<title>08. Order Pickup</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/jquery.js"></script>
+	<script src="server.js"></script>
 </head>
 <body>
 		
@@ -17,18 +18,18 @@
 
 	</div>
 
-	<div class="order-pick-map"></div>
+	<div class="order-pick-map" id="map" ></div>
 
 	<div class="wrapper">
 		
 		<div class="order-amount-type">
 			
 			<div class="left-panel">
-				Amount: Rs. <b>1500</b>
+				Amount: Rs. <b id="Amount">1500</b>
 			</div>
 
 			<div class="right-panel">
-				Type: <b>Cash</b>
+				Type: <b id="Method">Cash</b>
 			</div>
 
 		</div>
@@ -43,6 +44,10 @@
 		</div>
 
 	</div>
-
+	
+<script src="08. order-pick.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_2FL_BNSWlQlilxNS5nr6-VdeadiL9Q&callback=initMap">
+    </script>
 </body>
 </html>

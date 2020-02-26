@@ -46,7 +46,8 @@ function AcceptOrder()
       //  data: {'RiderId':2},
         contentType: "application/json;charset=utf-8",
         success: function (result) {
-               window.location.href = '05. Dashboard.html';
+            //localStorage.setItem("CurrentOrder",id);
+               window.location.href = '07. pending-list.html';
              
         },
         error: function (xhr, status, error) {
