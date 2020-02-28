@@ -1,73 +1,14 @@
 var CurrentOrder=localStorage.getItem("CurrentOrder");
+var cust_latitude,cust_longitude;
 var rest_longitude,rest_latitude;
+var rider_longitude,rider_latitude;
+
+$('#loading').removeClass("d-none");
+
+GetCustomerLocation();
 getOrder();
+
 $("div .header-heading").html("Order#"+CurrentOrder);
-
-
-      var map, infoWindow;
-     
-     console.log("location");
-           function initMap() {
-      var  map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
-
-        infoWindow = new google.maps.InfoWindow;
-        // Try HTML5 geolocation.
-        setInterval(function(){
-        navigator.geolocation.getCurrentPosition(showPosition);
-      },10000)
-        function showPosition(position) {
-          console.log(position.coords.latitude,position.coords.longitude)
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-          
-            infoWindow.setContent("Rider")
-           
-            
-        
-            //Resturent Location
-            var rest_pos = {
-              lat: rest_latitude,//33.700606 ,//position.coords.latitude,
-              lng:rest_longitude//72.943094// position.coords.longitude
-            };
-             
-            var  yourlocation = new google.maps.Marker({
-            position: pos,
-            map:      map,
-            title:    "Rider",
-            info:     "Rider"
-          });
-            var  marker_rest = new google.maps.Marker({
-            position: rest_pos,
-            map:      map,
-            title:    "rest",
-            info:     "rest"
-          });
-          infoWindow.open(marker_rest,yourlocation);
-           
-
-}
-
-
-      
-     
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-    
-            infoWindow.open(map);
-     
-      }
-    }
-   
-
-
 
 function getOrder(){
   $.ajax({
@@ -132,3 +73,103 @@ $(".order-pick-deliver-btn").on("click",function(){
 
 });
 
+var latitude,longitude;
+navigator.geolocation.getCurrentPosition(function(position) {
+ 
+latitude=position.coords.latitude;
+longitude=position.coords.longitude;
+
+ 
+ function mapLocation() {
+  var directionsDisplay;
+  var directionsDisplay_2;
+  var directionsService = new google.maps.DirectionsService();
+  var directionsService_2 = new google.maps.DirectionsService();
+  var map;
+
+  function initialize() {
+    directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+    directionsDisplay_2 = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+   
+    
+    var mapOptions = {
+      zoom: 7,
+      center: new google.maps.LatLng(30.3753, 69.3451)
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+    directionsDisplay_2.setMap(map);
+     calcRoute();
+  }
+
+  function calcRoute() {
+    var start = new google.maps.LatLng(latitude, longitude);
+   
+    //var end = new google.maps.LatLng(38.334818, -181.884886);
+    var end = new google.maps.LatLng(rest_latitude, rest_longitude);
+    var StartingPoint = new google.maps.Marker({icon: "img/starting_point.ico", map: map, position: start});
+    var Rest = new google.maps.Marker({icon: "img/rest.ico", map: map, position: end});
+    var Customer = new google.maps.Marker({icon: "img/user.ico", map: map, position: new google.maps.LatLng(cust_latitude,cust_longitude)});
+    var request = {
+      origin: new google.maps.LatLng(rest_latitude, rest_longitude),
+      destination: new google.maps.LatLng(cust_latitude,cust_longitude),
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    setInterval(function(){
+      navigator.geolocation.getCurrentPosition(function(position) {
+         marker = new google.maps.Marker({
+          position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+          map: map,
+      });
+      });
+      
+    },10000)
+   
+    var request_1 = {
+      origin: start,
+      destination: end,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+        directionsDisplay.setMap(map);
+      } else {
+        alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+      }
+    });
+    directionsService_2.route(request_1, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay_2.setDirections(response);
+        directionsDisplay_2.setMap(map);
+      } else {
+        alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+      }
+    });
+  }
+  initialize();
+}
+mapLocation();
+$('#loading').addClass("d-none");   
+
+});
+
+function GetCustomerLocation()
+{
+  $.ajax({
+    Type:"GET",
+    dataType:"json",
+    url:SERVER+"coordinates/"+CurrentOrder,
+    success:function(response)
+    {
+      console.log(response);
+      coordinatesId=response.Id;
+      cust_latitude= parseFloat(response.CustomerCoordinates.split(",")[0]);
+      cust_longitude=parseFloat(response.CustomerCoordinates.split(",")[1]);
+    },
+    error:function(response)
+    {
+      console.log(response);
+    }
+  })
+}

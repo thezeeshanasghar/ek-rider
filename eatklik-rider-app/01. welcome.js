@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
-    
+  var Record=  localStorage.getItem("Rider");
+  console.log(Record);
+  if(Record)
+  {
+    window.location.href = "05. Dashboard.html";
+  }
 });
 
 function login() {

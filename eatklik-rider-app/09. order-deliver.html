@@ -8,7 +8,11 @@
 	<script src="server.js"></script>
 </head>
 <body>
-		
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_2FL_BNSWlQlilxNS5nr6-VdeadiL9Q"></script>
+
+	<div id="loading" class="d-none">
+        <img id="loading-image" src="img/Loader.gif" alt="Processing..." />
+    </div>
 	<div class="header">
 		
 		<div class="wrapper">
@@ -18,7 +22,7 @@
 		</div>
 
 	</div>
-	<div class="order-pick-map" id="map"></div>
+	<div class="order-pick-map" id="map-canvas"></div>
 
 	<div class="wrapper">
 		
@@ -48,8 +52,6 @@
 
 	
 <script src="09. order-deliver.js"></script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_2FL_BNSWlQlilxNS5nr6-VdeadiL9Q&callback=initMap">
-</script>
+
 </body>
 </html>

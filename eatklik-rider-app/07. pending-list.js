@@ -20,7 +20,7 @@ function loadNewOrders() {
                       html += '<div class="right-panel"><span>1 minute ago</span></div>';
                       html += '<ul><li><img src="img/clock.png">'+ event.toLocaleTimeString('en-US')+'</li><li><img src="img/spoon-fork.png"> Dera Tasty, Chowk Churatha. DGKhan</li>';
                       html +='<li><img src="img/marker.png"> Khayaban-e-sarwar, DGKhan</li></ul>';
-                      html += '<div class="right-panel"><a href="#" onclick="OrderPIck('+order.Id+')"><img class="view" src="img/PickOrder.png"></a></div></section>';
+                      //html += '<div class="right-panel"><a href="#" onclick="OrderPIck('+order.Id+')"><img class="view" src="img/PickOrder.png"></a></div></section>';
                       html += '<div class="right-panel"><a href="07. pending-order.html?id='+order.Id+'"><img class="view" src="img/eye.png"></a></div></section>';
                   }); 
                   if (result.length > 0)
@@ -32,8 +32,8 @@ function loadNewOrders() {
         }
     });
 }
-function OrderPIck(OrderPIck)
-{
-    localStorage.setItem("CurrentOrder",OrderPIck);
-    window.open("08. order-pick.html","_self");
-}
+// function OrderPIck(OrderPIck)
+// {
+//     localStorage.setItem("CurrentOrder",OrderPIck);
+//     window.open("08. order-pick.html","_self");
+// }

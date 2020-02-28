@@ -1,5 +1,21 @@
 var rider = getObjsFromLocalStorage("Rider");
+function checkImage(imageSrc, good, bad) {
+    var img = new Image();
+    img.onload = good; 
+    img.onerror = bad;
+    img.src = imageSrc;
+}
+
+
 $(document).ready(function () {
+    //$(".edit-header img").attr("src",rider.ProfileImage);
+    checkImage(rider.ProfileImage, function(){ 
+        $(".edit-header img").attr("src",rider.ProfileImage);
+     }, function(){ 
+        
+        } );
+    $(".edit-header h2").text(rider.Name);
+    
 loadNewOrders();
 window.setInterval("loadNewOrders()", 30000);
 });
@@ -17,7 +33,7 @@ function loadNewOrders() {
                   $.each(result, function(index,order){
                     var event = new Date(order.Created);
                       html += '<section><div class="left-panel"><h4>Order #'+order.Id+'</h4></div>';
-                      html += '<div class="right-panel"><span>1 minute ago</span></div>';
+                      html += '<div class="right-panel"><span>'+0+'</span></div>';
                       html += '<ul><li><img src="img/clock.png">'+ event.toLocaleTimeString('en-US')+'</li><li><img src="img/spoon-fork.png"> Dera Tasty, Chowk Churatha. DGKhan</li>';
                       html +='<li><img src="img/marker.png"> Khayaban-e-sarwar, DGKhan</li></ul>';
                       html += '<div class="right-panel"><a href="06. new-order.html?id='+order.Id+'"><img class="view" src="img/eye.png"></a></div></section>';
@@ -30,4 +46,15 @@ function loadNewOrders() {
             console.log(xhr.responseText);
         }
     });
+}
+$(".burger").on("click",function(){
+    $(".edit-full-wrapper").fadeIn(300)
+})
+$(".edit-full-wrapper").on("click",function(){
+    $(".edit-full-wrapper").css("display","none");
+})
+
+function logout(){
+    localStorage.clear();
+    window.open("01. welcome.html","_self");
 }

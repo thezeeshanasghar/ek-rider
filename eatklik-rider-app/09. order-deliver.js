@@ -1,76 +1,12 @@
 var CurrentOrder=localStorage.getItem("CurrentOrder");
 var cust_latitude=0,cust_longitude=0;
+var rest_latitude=0,rest_longitude=0;
+$('#loading').removeClass("d-none");
 var coordinatesId=0;
 GetCustomerLocation();
       var map, infoWindow;
      var Id=1; //Order ID
      console.log("location");
-        
-     
-     var map, infoWindow;
-     
-     console.log("location");
-           function initMap() {
-      var  map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
-
-        infoWindow = new google.maps.InfoWindow;
-        // Try HTML5 geolocation.
-        setInterval(function(){
-        navigator.geolocation.getCurrentPosition(showPosition);
-      },10000)
-        function showPosition(position) {
-          console.log(position.coords.latitude,position.coords.longitude)
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-          
-            infoWindow.setContent("Rider")
-           
-            
-        
-            //Customer Location
-            var cust_pos = {
-              lat: cust_latitude,//33.700605 ,//position.coords.latitude,
-              lng:cust_longitude//72.943093// position.coords.longitude
-            };
-             
-            var  yourlocation = new google.maps.Marker({
-            position: pos,
-            map:      map,
-            title:    "Rider",
-            info:     "Rider"
-          });
-            var  marker_cust = new google.maps.Marker({
-            position: cust_pos,
-            map:      map,
-            title:    "Customer Location",
-            info:     "Customer Location"
-          });
-          infoWindow.open(marker_cust,yourlocation);
-
-          UpdateCoordinates(pos.lat+","+pos.lng,cust_pos.lat+","+cust_pos.lng,CurrentOrder)
-
-}
-
-
-      
-     
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-    
-            infoWindow.open(map);
-     
-      }
-    }
-   
-     
     getOrder();
     function getOrder(){
         $.ajax({
@@ -85,6 +21,7 @@ GetCustomerLocation();
               $("#Amount").html(response.GrandTotal);
               $("#Method").html(response.PayMethod==0?"Cash":response.PayMethod==1?"Other":response.PayMethod==2?"Other":response.PayMethod==3?"Other":"");
             $("#Delivery_Address").html(response.Address);
+            GetResturent(response.RestaurantId);
           },
           error:function(response)
           {
@@ -108,8 +45,8 @@ function GetCustomerLocation()
     {
       console.log(response);
       coordinatesId=response.Id;
-      cust_latitude= parseFloat(response.customerCoordinates.split(",")[0]);
-      cust_longitude=parseFloat(response.customerCoordinates.split(",")[1]);
+      cust_latitude= parseFloat(response.CustomerCoordinates.split(",")[0]);
+      cust_longitude=parseFloat(response.CustomerCoordinates.split(",")[1]);
     },
     error:function(response)
     {
@@ -141,4 +78,110 @@ $.ajax({
         console.log("error",response);
     }
 })
+}
+
+
+//MyChanges
+
+var latitude,longitude;
+navigator.geolocation.getCurrentPosition(function(position) {
+ 
+latitude=position.coords.latitude;
+longitude=position.coords.longitude;
+
+ 
+ function mapLocation() {
+  var directionsDisplay;
+  var directionsDisplay_2;
+  var directionsService = new google.maps.DirectionsService();
+  var directionsService_2 = new google.maps.DirectionsService();
+  var map;
+
+  function initialize() {
+    directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+    directionsDisplay_2 = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+   
+    
+    var mapOptions = {
+      zoom: 7,
+      center: new google.maps.LatLng(30.3753, 69.3451)
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+    directionsDisplay_2.setMap(map);
+     calcRoute();
+  }
+
+  function calcRoute() {
+    var start = new google.maps.LatLng(latitude, longitude);
+   
+    //var end = new google.maps.LatLng(38.334818, -181.884886);
+    var end = new google.maps.LatLng(rest_latitude, rest_longitude);
+    var StartingPoint = new google.maps.Marker({icon: "img/starting_point.ico", map: map, position: start});
+    var Rest = new google.maps.Marker({icon: "img/rest.ico", map: map, position: end});
+    var Customer = new google.maps.Marker({icon: "img/user.ico", map: map, position: new google.maps.LatLng(cust_latitude,cust_longitude)});
+    var request = {
+      origin: new google.maps.LatLng(rest_latitude, rest_longitude),
+      destination: new google.maps.LatLng(cust_latitude,cust_longitude),
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    setInterval(function(){
+      navigator.geolocation.getCurrentPosition(function(position) {
+         marker = new google.maps.Marker({
+          position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+          map: map,
+      });
+      UpdateCoordinates(position.coords.latitude+","+position.coords.longitude,cust_latitude+","+cust_longitude,CurrentOrder)
+      });
+      
+    },10000)
+   
+    var request_1 = {
+      origin: start,
+      destination: end,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+        directionsDisplay.setMap(map);
+      } else {
+        alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+      }
+    });
+    directionsService_2.route(request_1, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay_2.setDirections(response);
+        directionsDisplay_2.setMap(map);
+      } else {
+        alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+      }
+    });
+  }
+  initialize();
+}
+mapLocation();
+$('#loading').addClass("d-none");   
+
+});
+
+function  GetResturent(RestaurantId)
+{
+    $.ajax({
+       Type:"GET",
+       dataType:"json",
+       url:SERVER+ "RestaurantLocation/Restaurant/"+RestaurantId,
+       success:function(response)
+       {
+           
+          $(".pick-deliver-add p").text(response.Address);
+          rest_latitude=response.Latitude;
+          rest_longitude=response.Longitude;
+          console.log(response);
+       },
+       error:function(response)
+       {
+           console.log(response);
+       }
+    })
 }
