@@ -1,75 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>01. Welcome</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /> -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/jquery.js" defer></script>
-    <script src="common.js" defer></script>
-    <script src="server.js" defer></script>
-    <script src="01. welcome.js" defer></script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div id="welcome">
-        <div class="welcome-upper-panel">
-          <div class="welcome-heading">
-            <h1>Welcome Username!</h1>
-            <p>Sign in</p>
-          </div>
+<head>
+	<title>01. Welcome</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+		
+	<div class="wrapper">
+		
+		<div id="welcome">
+			
+			<div class="welcome-upper-panel">
+			
+				<div class="welcome-heading">	
+					<h1>Welcome Username!</h1>
+					<p>Sign in</p>
+				</div>
 
-          <div class="welcome-inputs">
-            <div class="input-panel">
-              <img src="img/user-icon.png" /><input
-                type="number"
-                id="Mobile"
-                name=""
-                onkeyup="checkForm(this)"
-                placeholder="Username"
-                min="0"
-              />
-              <span
-                id="mobAlert"
-                class="mobAlert"
-                style="text-indent:5rem; color: crimson; padding-left: 20px;"
-              ></span>
-            </div>
+				<div class="welcome-inputs">
+					
+					<div class="input-panel">
+						<img src="img/user-icon.png"><input type="text" id="Mobile" name="" placeholder="Mobile Number">
+					</div>
 
-            <div alert-panel id="alert-panel"></div>
+					<div class="input-panel">
+						<img src="img/pswd.png"><input type="password" id="Password" name="" placeholder="Password">
+					</div>
 
-            <div class="input-panel">
-              <img src="img/pswd.png" /><input
-                type="password"
-                id="Password"
-                name=""
-                onkeyup="checkForm()"
-                placeholder="Password"
-              />
-            </div>
-          </div>
-        </div>
+				</div>
 
-        <div class="welcome-bottom-panel">
-          <!-- <div class="bottom-panel-btn" aria-disabled="true"> -->
-          <!-- <span onclick="login()" class="submit">Sign In</span> -->
-          <!-- </div> -->
-          <!-- <button class="bottom-panel-btn" id="signBtn" disabled="true">
-            Sign In
-          </button> -->
-          <button
-            type="submit"
-            class="bottom-panel-btn"
-            id="signInBtn"
-            disabled
-          >
-            Sign In
-          </button>
+			</div>
 
-          <div class="bottom-sticky">
-            <a href="#">Forgot Password</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+			<div class="welcome-bottom-panel">
+			
+				<div class="bottom-panel-btn" onclick="login()">	
+					<span  class="submit">Sign In</span>
+				</div>
+
+				<div class="bottom-sticky">
+					<a href="02. reset-pswd.html">Forgot Password</a>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="common.js"></script>
+	<script src="server.js"></script>
+	<script src="01. welcome.js"></script>
+</body>
 </html>

@@ -1,41 +1,99 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>05. Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-		
-	<div class="header">
-		
-		<div class="wrapper">
-			<img class="left-arrow" src="img/left-arrow.png">
-			<div class="header-heading">Dashboard</div>
-			<div class="burger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</div>
+  <head>
+    <title>05. Dashboard</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div class="edit-full-wrapper">
+      <div class="edit-wrapper">
+        <div class="edit-header">
+          <img src="img/user-icon-dark.png" />
 
-	</div>
+          <h2>Hello User Name!</h2>
 
-	<div class="dual-opt">
+          <div class="edit-rider-status">
+            <div class="left-panel">
+              April, 10 On-Duty
+            </div>
 
-		<section>
-			<span class="active">New</span>
-		</section>
+            <div class="right-panel">online</div>
+          </div>
+        </div>
 
-		<section>
-			<span>Pending</span>
-		</section>
+        <div class="edit-opt">
+          <section>
+            <img src="img/edit.png" />
 
-	</div>
+            <a href="11. edit-profile.html" class="edit-heading"
+              >Edit my profile</a
+            >
+          </section>
 
-	<div class="all-orders">
-		
-		<section>
+          <section>
+            <img src="img/order.png" />
+
+            <a href="15. all-orders.html" class="edit-heading"
+              >View all orders</a
+            >
+          </section>
+
+          <section>
+            <img src="img/pending.png" />
+
+            <a href="18. payment-pending.html" class="edit-heading"
+              >Payments pending</a
+            >
+          </section>
+
+          <section>
+            <img src="img/complete.png" />
+
+            <a href="19. complete.html" class="edit-heading">Complete orders</a>
+          </section>
+
+          <section>
+            <img src="img/earning.png" />
+
+            <a href="20. earnings.html" class="edit-heading">My earning</a>
+          </section>
+
+          <section>
+            <img src="img/logout.png" />
+
+            <div class="edit-heading" id="logOut">logout</div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="wrapper">
+        <img class="left-arrow" src="img/left-arrow.png" />
+        <div class="header-heading">Dashboard</div>
+        <div class="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dual-opt">
+      <section>
+        <span class="active">New</span>
+      </section>
+
+      <section>
+        <span><a href="07. pending-list.html">Pending</a></span>
+      </section>
+    </div>
+
+    <div class="all-orders">
+      No Orders Assigned
+
+      <!-- <section>
 			<div class="left-panel">
 				<h4>Order #321540</h4>
 			</div>
@@ -89,9 +147,11 @@
 			<div class="right-panel">
 				<img class="view" src="img/eye.png">
 			</div>
-		</section>
-
-	</div>
-
-</body>
+		</section> -->
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="common.js"></script>
+    <script src="server.js"></script>
+    <script src="05. Dashboard.js"></script>
+  </body>
 </html>
