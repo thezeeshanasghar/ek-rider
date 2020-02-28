@@ -718,8 +718,13 @@ img {
 	position: absolute;
 	z-index: 998;
 	float: left;
+<<<<<<< HEAD
 	background: rgba(16, 15, 15, 0.7);
+=======
+	background: rgba(255, 255, 255, 0.9);
+>>>>>>> 2e6b3cbf08f23c56718d7a55ff418e5f80e5fe9e
 	overflow: hidden;
+	display: none;
 }
 
 .edit-wrapper {
@@ -776,6 +781,10 @@ img {
 	float: left;
 	margin: 0 10px;
 	margin-top: -2px;
+}
+
+.edit-opt section a {
+	color: #fff;
 }
 
 .edit-opt section .edit-heading {

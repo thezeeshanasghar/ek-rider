@@ -8,6 +8,7 @@ function checkImage(imageSrc, good, bad) {
 
 
 $(document).ready(function () {
+<<<<<<< HEAD
     //$(".edit-header img").attr("src",rider.ProfileImage);
     checkImage(rider.ProfileImage, function(){ 
         $(".edit-header img").attr("src",rider.ProfileImage);
@@ -16,6 +17,23 @@ $(document).ready(function () {
         } );
     $(".edit-header h2").text(rider.Name);
     
+=======
+
+
+  $(".burger").click(function(){
+
+      $(".edit-full-wrapper").fadeIn();
+
+  });
+
+  $(".edit-full-wrapper").click(function(){
+
+      $(this).fadeOut();
+
+  });
+
+  
+>>>>>>> 2e6b3cbf08f23c56718d7a55ff418e5f80e5fe9e
 loadNewOrders();
 window.setInterval("loadNewOrders()", 30000);
 });
@@ -47,6 +65,7 @@ function loadNewOrders() {
         }
     });
 }
+<<<<<<< HEAD
 $(".burger").on("click",function(){
     $(".edit-full-wrapper").fadeIn(300)
 })
@@ -58,3 +77,22 @@ function logout(){
     localStorage.clear();
     window.open("01. welcome.html","_self");
 }
+=======
+
+
+$(document).ready(function(){
+
+  $(".burger").click(function(){
+
+      $(".edit-full-wrapper").fadeIn();
+
+  });
+
+  $(".edit-full-wrapper").click(function(){
+
+      $(this).fadeOut();
+
+  });
+
+});
+>>>>>>> 2e6b3cbf08f23c56718d7a55ff418e5f80e5fe9e
