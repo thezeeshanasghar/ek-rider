@@ -27,7 +27,8 @@ function loadNewOrder(id) {
                   $("#instructions").html(result.Instruction);
                   $("#paymethod").html(result.PayMethod);
                   $("#grandtotal").html('Rs '+result.GrandTotal);
-
+                $("#CustomerAddress").html(result.Address);
+                $("#Rest_location").html(result.Restaurant.RestaurantLocations[0].Address);
               }
         },
         error: function (xhr, status, error) {

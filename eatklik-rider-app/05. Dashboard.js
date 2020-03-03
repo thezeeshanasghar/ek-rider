@@ -1,23 +1,20 @@
 var rider = getObjsFromLocalStorage("Rider");
-function checkImage(imageSrc, good, bad) {
+
+
     var img = new Image();
-    img.onload = good; 
-    img.onerror = bad;
-    img.src = imageSrc;
-}
+    img.onload = function(){
+      $(".edit-header img").attr("src",RESOURCEURL+rider.ProfileImage);
+
+    }; 
+    img.onerror = function()
+    {
+
+    };
+    img.src =RESOURCEURL+ rider.ProfileImage;
+    $(".edit-header h2").text("Hello! "+rider.Name);
 
 
 $(document).ready(function () {
-<<<<<<< HEAD
-    //$(".edit-header img").attr("src",rider.ProfileImage);
-    checkImage(rider.ProfileImage, function(){ 
-        $(".edit-header img").attr("src",rider.ProfileImage);
-     }, function(){ 
-        
-        } );
-    $(".edit-header h2").text(rider.Name);
-    
-=======
 
 
   $(".burger").click(function(){
@@ -33,7 +30,6 @@ $(document).ready(function () {
   });
 
   
->>>>>>> 2e6b3cbf08f23c56718d7a55ff418e5f80e5fe9e
 loadNewOrders();
 window.setInterval("loadNewOrders()", 30000);
 });
@@ -50,14 +46,17 @@ function loadNewOrders() {
                if(result) {
                   $.each(result, function(index,order){
                     var event = new Date(order.Created);
+                    var today= new Date();
                       html += '<section><div class="left-panel"><h4>Order #'+order.Id+'</h4></div>';
-                      html += '<div class="right-panel"><span>'+0+'</span></div>';
-                      html += '<ul><li><img src="img/clock.png">'+ event.toLocaleTimeString('en-US')+'</li><li><img src="img/spoon-fork.png"> Dera Tasty, Chowk Churatha. DGKhan</li>';
-                      html +='<li><img src="img/marker.png"> Khayaban-e-sarwar, DGKhan</li></ul>';
+                      html += '<div class="right-panel"><span>'+Date.dateDiff('n', event, today)+' min.</span></div>';
+                      html += '<ul><li><img src="img/clock.png">'+ event.toLocaleTimeString('en-US')+'</li><li><img src="img/spoon-fork.png"> '+order.Restaurant.RestaurantLocations[0].Address+'</li>';
+                      html +='<li><img src="img/marker.png">'+order.Address+'</li></ul>';
                       html += '<div class="right-panel"><a href="06. new-order.html?id='+order.Id+'"><img class="view" src="img/eye.png"></a></div></section>';
-                  }); 
+                     
+                    }); 
                   if (result.length > 0)
                   $(".all-orders").html(html);
+                 
               }
         },
         error: function (xhr, status, error) {
@@ -65,19 +64,6 @@ function loadNewOrders() {
         }
     });
 }
-<<<<<<< HEAD
-$(".burger").on("click",function(){
-    $(".edit-full-wrapper").fadeIn(300)
-})
-$(".edit-full-wrapper").on("click",function(){
-    $(".edit-full-wrapper").css("display","none");
-})
-
-function logout(){
-    localStorage.clear();
-    window.open("01. welcome.html","_self");
-}
-=======
 
 
 $(document).ready(function(){
@@ -95,4 +81,19 @@ $(document).ready(function(){
   });
 
 });
->>>>>>> 2e6b3cbf08f23c56718d7a55ff418e5f80e5fe9e
+Date.dateDiff = function(datepart, fromdate, todate) {	
+    datepart = datepart.toLowerCase();	
+    var diff = todate - fromdate;	
+    var divideBy = { w:604800000, 
+                     d:86400000, 
+                     h:3600000, 
+                     n:60000, 
+                     s:1000 };	
+    
+    return Math.floor( diff/divideBy[datepart]);
+  }
+  function  Session_logout()
+  {
+    localStorage.clear();
+    window.open("01. welcome.html","_self");
+  }

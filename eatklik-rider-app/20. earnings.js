@@ -13,12 +13,18 @@ function loadAllErnings(id) {
                console.log(result);
                var html='';
                if(result) {
+                   console.log(result);
                    var count = result.length;
-                   var amount = count * 40;
+                   var AllEarnings=0;
+                   for(var i=0;i<result.length;i++)
+                   {
+                    AllEarnings+=parseFloat(result[i].GrandTotal) ;
+                   }
+                 $("#OrderDate").html(result[result.length-1].Created.split("T")[0])
                    console.log(count);
-                   console.log(amount);
+                   console.log(AllEarnings);
                   $("#count").html(count);
-                  $("#amount").html(amount);
+                  $("#amount").html(AllEarnings);
 
               }
         },

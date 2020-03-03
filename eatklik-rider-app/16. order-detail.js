@@ -14,6 +14,13 @@ function loadNewOrder(id) {
                var html='';
                var event = new Date(order.Created);
                if(order) {
+                   if(order.Restaurant.RestaurantLocations[0])
+                   {
+                    $("#Rest_Address").html(order.Restaurant.RestaurantLocations[0].Address);
+                   }else{
+                    $("#Rest_Address").html("No Address Found")
+                   }
+                $("#Cust_Address").html(order.Address);
                   $.each(order.OrderItems, function(index,item){
                       html += '<section><div class="left-panel">'+ item.Name + '('+item.Size+')'+'</div><div class="right-panel">';
                       html += '<div class="qty">'+item.Quantity+'</div><div class="price">RS '+item.Total+'</div></div></section>'; 

@@ -1083,8 +1083,15 @@ input:focus{
 	border-radius: 50%;
 	display: inline-block;
   }
-
-
+.edit-header img{
+	border-radius: 100%;
+	height: 50px;
+}
+ #output
+{
+	border-radius: 100%;
+    height: 100px;
+}
 
 
 

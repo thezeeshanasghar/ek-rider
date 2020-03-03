@@ -1,7 +1,5 @@
 var OrderId=localStorage.getItem("CurrentOrder");
-$("#TotalBill").text("300");
-$("#AmmountRec").text("300");
-$("#Remain").text("0");
+
 $(".order-id").text("Order # " +OrderId);
 console.log(OrderId)
 $("#txtAmount").on("change",function(){
@@ -16,6 +14,32 @@ $("#txtAmount").on("change",function(){
 });
 
 $("#endOrder").on("click",function(){
+    if(   $("#Remain").text() !="0"){
+        return false;
+    }
     localStorage.removeItem("CurrentOrder");
     window.open("05. Dashboard.html","_self");
 })
+
+getOrder();
+function getOrder(){
+    $.ajax({
+      Type:"GET",
+      dataType:"json",
+      url: SERVER + "order/"+ OrderId,
+      
+      success:function(response)
+      {
+          
+        $("#TotalBill").text(response.GrandTotal);
+        $("#AmmountRec").text(response.GrandTotal);
+        $("#Remain").text("0");
+          
+      },
+      error:function(response)
+      {
+          console.log(response);
+      }
+  
+  })  
+  }

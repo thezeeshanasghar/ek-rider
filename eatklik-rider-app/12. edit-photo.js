@@ -1,4 +1,7 @@
 var rider = getObjsFromLocalStorage("Rider");
+//$("#output").attr("src",rider[0].ProfileImage)
+console.log(rider);
+document.getElementById("output").src=RESOURCEURL+rider.ProfileImage
 $(document).ready(function () {  
 });
 var loadFile = function(event) {
@@ -22,6 +25,7 @@ myForm.addEventListener("submit" , e=> {
     }).catch(console.error);
    
 });
+
 function UpdateRiderPhoto() {
      
     $.ajax({
@@ -31,8 +35,13 @@ function UpdateRiderPhoto() {
         data: JSON.stringify(rider),
         contentType: "application/json;charset=utf-8",
         success: function (result) {
-            localStorage.setItem("Rider" , JSON.stringify(rider));
-            window.location.href="11. edit-profile.html";       
+        setTimeout(function()
+        {
+ localStorage.setItem("Rider" , JSON.stringify(rider));
+        },0)
+           
+            window.location.href="11. edit-profile.html"; 
+            
         },
         error: function (xhr, status, error) {
             console.log(error);

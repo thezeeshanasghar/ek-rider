@@ -13,15 +13,24 @@ function loadAllOrders(id) {
                console.log(result);
                var html='';
                if(result) {
+                 
                   $.each(result, function(index,order){
                     var event = new Date(order.Created);
-                      html += '<section><div class="wrapper"><div class="left-panel"><h2>Order ID #'+order.Id+'</h2>';
-                      html += '<p>Order Amount, Rs. <span>'+order.GrandTotal+'</span></p><p>'+event.toLocaleTimeString('en-US')+', '+event.toLocaleDateString('en-GB', {
-                        day: '2-digit', month: 'short', year: 'numeric'
-                      }).replace(/ /g, '-')+'</p></div>';
-                     // html += '<div class="right-panel"><div class="order-status">New</div><a href="16. order-detail.html?'+order.Id+'>view detail</a>';
-                      html += '<div class="right-panel"><div class="order-status">New</div><a href="16. order-detail.html?>view detail</a>';
-                      html += '</div></div></section>';         
+                    
+	 html+="<section>"
+   html+="<div class=\"wrapper\">"   
+   html+="<div class=\"left-panel\">"
+   html+="<h2>Order ID #"+order.Id+"</h2>"
+   html+=" <p>Order Amount, Rs. <span>"+order.GrandTotal+"</span></p>"
+   html+= " <p>"+event.toLocaleTimeString('en-US')+', '+event.toLocaleDateString('en-GB', {   day: '2-digit', month: 'short', year: 'numeric' }).replace(/ /g, '-')+"</p>"
+   html+="  </div>"
+   html+="<div class=\"right-panel\">"
+   html+=" <div class=\"order-status\">complete</div>"
+   html+="<a href=\"16. order-detail.html?id="+order.Id+"\">view detail</a>"
+   html+="</div>"
+   html+=" </div>"
+  html+="</section>"
+       
                   }); 
                   $(".orders").html(html);
               }
