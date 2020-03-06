@@ -17,8 +17,9 @@ $("#endOrder").on("click",function(){
     if(   $("#Remain").text() !="0"){
         return false;
     }
-    localStorage.removeItem("CurrentOrder");
-    window.open("05. Dashboard.html","_self");
+    // localStorage.removeItem("CurrentOrder");
+    // window.open("05. Dashboard.html","_self");
+    OrderStatus();
 })
 
 getOrder();
@@ -43,3 +44,25 @@ function getOrder(){
   
   })  
   }
+
+  
+function OrderStatus(){
+
+    $.ajax({
+      
+        dataType:"json",
+        method:"PUT",
+        url:SERVER+"Order/"+OrderId+"/order-status/"+3,
+        success:function(response)
+        {
+            localStorage.removeItem("CurrentOrder");
+            window.open("05. Dashboard.html","_self");
+        },
+        error:function(response)
+        {
+            console.log("error",response);
+        }
+        
+    })
+
+};

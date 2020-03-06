@@ -1,10 +1,36 @@
 $(document).ready(function () {
 
-  var Record=  localStorage.getItem("Rider");
+  var Record=  JSON.parse(localStorage.getItem("Rider"));
+  var CurrentOrder=localStorage.getItem("CurrentOrder");
   console.log(Record);
   if(Record)
   {
-    window.location.href = "05. Dashboard.html";
+    if(CurrentOrder)
+    {
+     // window.location.href = "09. order-deliver.html";
+     $.ajax({
+       type:"Get",
+       dataType:"json",
+       url: SERVER + "order/"+ CurrentOrder,
+       success:function(response)
+       {
+          console.log(response);
+          if(response.OrderStatus==2)
+          {
+            window.location.href = "09. order-deliver.html";
+          }else{
+            window.location.href="08. order-pick.html";
+          }
+       },
+       error:function(response)
+       {
+
+       }
+     })
+    }else{
+          window.location.href = "05. Dashboard.html";
+    }
+
   }
 });
 

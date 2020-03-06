@@ -1,7 +1,17 @@
 var rider = getObjsFromLocalStorage("Rider");
 //$("#output").attr("src",rider[0].ProfileImage)
 console.log(rider);
-document.getElementById("output").src=RESOURCEURL+rider.ProfileImage
+var img = new Image();
+img.onload = function(){
+    document.getElementById("output").src=RESOURCEURL+rider.ProfileImage
+
+}; 
+img.onerror = function()
+{
+
+};
+img.src =RESOURCEURL+ rider.ProfileImage;
+
 $(document).ready(function () {  
 });
 var loadFile = function(event) {

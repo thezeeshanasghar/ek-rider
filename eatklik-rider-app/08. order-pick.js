@@ -61,6 +61,7 @@ $(".order-pick-deliver-btn").on("click",function(){
         url:SERVER+"Order/"+CurrentOrder+"/order-status/"+2,
         success:function(response)
         {
+          
          console.log(response);
          window.open("09. order-deliver.html","_self");
         },
@@ -115,12 +116,15 @@ longitude=position.coords.longitude;
       destination: new google.maps.LatLng(cust_latitude,cust_longitude),
       travelMode: google.maps.TravelMode.DRIVING
     };
+    marker = new google.maps.Marker();
     setInterval(function(){
       navigator.geolocation.getCurrentPosition(function(position) {
-         marker = new google.maps.Marker({
-          position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
-          map: map,
-      });
+      //    marker = new google.maps.Marker({
+      //     position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+      //     map: map,
+      // });
+      marker.setPosition( new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+      marker.setMap(map);
       });
       
     },10000)

@@ -2,6 +2,18 @@ var rider = getObjsFromLocalStorage("Rider");
 $(document).ready(function () {
 loadNewOrders();
 //window.setInterval("loadNewOrders()", 30000);
+
+$(".burger").click(function(){
+  
+    $(".edit-full-wrapper").fadeIn();
+
+});
+
+$(".edit-full-wrapper").click(function(){
+
+    $(this).fadeOut();
+
+});
 });
 function loadNewOrders() {
    
@@ -48,4 +60,9 @@ Date.dateDiff = function(datepart, fromdate, todate) {
                      s:1000 };	
     
     return Math.floor( diff/divideBy[datepart]);
+  }
+  function  Session_logout()
+  {
+    localStorage.clear();
+    window.open("01. welcome.html","_self");
   }

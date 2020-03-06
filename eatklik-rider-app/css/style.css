@@ -330,7 +330,7 @@ img {
 .all-orders {
 	width: 99%;
 	float: left;
-	margin-left: 7px;
+	margin-left: 4px;
     border: 1px solid white;
 }
 
@@ -714,7 +714,7 @@ img {
 .edit-full-wrapper {
 	width: 100%;
 	height: 100%;
-	background: white;
+	background: #ffffff80;
 	position: absolute;
 	z-index: 998;
 	float: left;

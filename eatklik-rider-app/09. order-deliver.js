@@ -3,6 +3,7 @@ var cust_latitude=0,cust_longitude=0;
 var rest_latitude=0,rest_longitude=0;
 $('#loading').removeClass("d-none");
 var coordinatesId=0;
+
 GetCustomerLocation();
       var map, infoWindow;
      var Id=1; //Order ID
@@ -57,18 +58,19 @@ function GetCustomerLocation()
 function UpdateCoordinates(driver_Coordinates,customer_Coordinates,order_Id)
 {
 
-    var obj={
+    var coordinates={
         Id:coordinatesId,
-        driverCoordinates:driver_Coordinates,
-        customerCoordinates:customer_Coordinates,
-        orderId:order_Id
+        RiderCoordinates:driver_Coordinates,
+        CustomerCoordinates:customer_Coordinates,
+        OrderId:order_Id
     }
-    console.log(obj);
+    console.log(coordinates);
 $.ajax({
-    type:"PUT",
-    url:SERVER+"Coordinates/"+coordinatesId,
-    data:JSON.stringify(obj),
+    method:"PUT",
     dataType:"json",
+    url:SERVER+"Coordinates/"+coordinatesId,
+    data:JSON.stringify(coordinates),
+   
     contentType: "application/json;charset=utf-8",
     success:function(response)
     {
@@ -125,14 +127,17 @@ longitude=position.coords.longitude;
       destination: new google.maps.LatLng(cust_latitude,cust_longitude),
       travelMode: google.maps.TravelMode.DRIVING
     };
+    marker = new google.maps.Marker();
     setInterval(function(){
-      navigator.geolocation.getCurrentPosition(function(position) {
-         marker = new google.maps.Marker({
-          position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
-          map: map,
-      });
+      // navigator.geolocation.getCurrentPosition(function(position) {
+      //    marker = new google.maps.Marker({
+      //     position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+      //     map: map,
+      // });
+      marker.setPosition( new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+      marker.setMap(map);
       UpdateCoordinates(position.coords.latitude+","+position.coords.longitude,cust_latitude+","+cust_longitude,CurrentOrder)
-      });
+      
       
     },10000)
    

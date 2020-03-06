@@ -17,7 +17,7 @@ function loadAllOrders(id) {
                   $.each(result, function(index,order){
                     var event = new Date(order.Created);
                       html += '<div class="payment-pending"><section><div class="wrapper"><div class="pending-id">Order ID #'+order.Id+'</div><div class="left-panel">';
-                      html += '<p>Order Amount, Rs. 1200</p><p>'+event.toLocaleTimeString('en-US')+', '+event.toLocaleDateString('en-GB', {
+                      html += '<p>Order Amount, Rs. '+order.GrandTotal+'</p><p>'+event.toLocaleTimeString('en-US')+', '+event.toLocaleDateString('en-GB', {
                         day: '2-digit', month: 'short', year: 'numeric'
                       }).replace(/ /g, '-')+'</p></div><div class="right-panel">';
                      html += '<img src="img/eye.png" onclick=\"viewDetail('+order.Id+')"\"></div></div></section></div>';    
