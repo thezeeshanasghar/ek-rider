@@ -1078,7 +1078,7 @@ input:focus{
 }
 .dot {
 	height: 15px;
-	width: 15px;
+	width: 15px;		
 	background-color:green;
 	border-radius: 50%;
 	display: inline-block;
@@ -1105,3 +1105,35 @@ input:focus{
 
 
 
+.ui-datepicker {
+	display: inline-block !important;
+}
+
+.ui-widget-header {
+	background-color: #aedbe1;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+	background-color: #aedbe1;
+	color: #020f15;
+	border: 1px solid #020f15;
+	border-radius: 3px;
+	margin: 2px;
+	text-align: center;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-state-active, .ui-widget-content .ui-state-active {
+	background-color: #020f15;
+	color: #ffffff;
+	border: 1px solid #020f15;
+	border-radius: 3px;
+}
+
+#showHere {
+	color: #fff;
+	background: none;
+	border: none;
+	font-size: 14px;
+	padding-left: 5px;
+	font-weight: bold;
+}
