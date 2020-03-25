@@ -46,8 +46,18 @@ function login() {
         dataType: "json",
         contentType: "application/json;charset=utf-8",
         success: function (result) {
-               localStorage.setItem("Rider", JSON.stringify(result));
-               window.location.href = "05. Dashboard.html";
+          if(result)
+          {
+            if(result.UserAuthentication[0].IsVerified==1)
+            {
+              localStorage.setItem("Rider", JSON.stringify(result));
+              window.location.href = "05. Dashboard.html";
+            }else{
+
+                localStorage.setItem("RiderId", result.Id);
+                window.location.href = "03. verify.html";
+            }
+          }
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);

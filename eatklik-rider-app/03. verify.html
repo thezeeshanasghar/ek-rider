@@ -19,13 +19,15 @@
 				</div>
 
 				<div class="welcome-inputs">
-							
-					<ul class="otp">
+					<form class="input-container" style="position: relative;">		
+						<input type="text" id="otpCode" class="form-input" placeholder="otp number" >
+					</form>	
+					<!-- <ul class="otp">
 						<li><span></span></li>
 						<li><span></span></li>
 						<li><span></span></li>
 						<li><span></span></li>
-					</ul>
+					</ul> -->
 
 				</div>
 
@@ -33,8 +35,8 @@
 
 			<div class="welcome-bottom-panel">
 			
-				<div class="bottom-panel-btn">	
-					<span class="submit">Sign In</span>
+				<div class="bottom-panel-btn" onclick="VerifyUser()">	
+					<span class="submit">Verify</span>
 				</div>
 
 				<div class="bottom-sticky">
@@ -46,6 +48,8 @@
 		</div>
 
 	</div>
-
+<script src="js/jquery.js"></script>
+<script src="server.js"></script>
+<script src="03. verify.js"></script>
 </body>
 </html>
