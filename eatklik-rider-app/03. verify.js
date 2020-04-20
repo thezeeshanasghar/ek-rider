@@ -2,10 +2,10 @@ function VerifyUser()
 {
    var Id=localStorage.getItem("RiderId");
     $.ajax({
-        url: SERVER + "Rider/VerifyRider/"+Id,
+        url: SERVER + "Rider/VerifyRider/"+Id+'/'+Number($("#otpCode").val()),
         type: "PUT",
         dataType: "json",
-        data:{Code:$("#otpCode").val()},
+        // data:{Code:$("#otpCode").val()},
         contentType: "application/json;charset=utf-8",
         beforeSend:function(){
            // $('#loading').removeClass("d-none");
@@ -14,7 +14,7 @@ function VerifyUser()
           console.log(result);
           if(result)
           {
-              if(result.UserAuthentication[0].IsVerified==1)
+              if(result.IsVerified==1)
               {
                 localStorage.setItem("Rider", JSON.stringify(result));
                 localStorage.removeItem("CustomerId");

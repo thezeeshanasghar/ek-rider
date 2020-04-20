@@ -48,7 +48,7 @@ function login() {
         success: function (result) {
           if(result)
           {
-            if(result.UserAuthentication[0].IsVerified==1)
+            if(result.IsVerified==1)
             {
               localStorage.setItem("Rider", JSON.stringify(result));
               window.location.href = "05. Dashboard.html";
