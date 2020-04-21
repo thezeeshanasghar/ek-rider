@@ -19,7 +19,9 @@ function VerifyUser()
                 localStorage.setItem("Rider", JSON.stringify(result));
                 localStorage.removeItem("CustomerId");
                 window.open("05. Dashboard.html","_self"); 
-              }else{
+              }
+              else
+              {
                   alert("Invalid Code");
               }
              
