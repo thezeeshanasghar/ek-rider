@@ -1,3 +1,4 @@
+GetCode();
 function VerifyUser()
 {
    var Id=localStorage.getItem("RiderId");
@@ -44,4 +45,27 @@ function VerifyUser()
         }
  
     });
+}
+
+
+function GetCode()
+{
+    var Id=localStorage.getItem("RiderId");
+    $.ajax({
+        url: SERVER + "Setting/sms/"+Id+"/Rider",
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
+        beforeSend:function(){
+            $('#loading').removeClass("d-none");
+        },
+        success: function (result) {
+          console.log(result);
+        },error:function(resp)
+        {
+
+        }
+    });
+
+
 }
