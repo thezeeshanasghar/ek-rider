@@ -23,7 +23,7 @@
 		<div class="wrapper">
 			
 			<div class="left-panel">Date <input id="showHere" type="" readonly=""></div>
-			<div class="right-panel"><span class="circle"></span></div>
+			<div class="right-panel"><span Id="SearchByCalendar" class="circle"></span></div>
 
 		</div>
 
@@ -40,7 +40,7 @@
 		<div class="wrapper">
 			
 			<div class="left-panel">All</div>
-			<div class="right-panel"><span class="circle-dot"></span></div>
+			<div class="right-panel"><span id="SearchAll" class="circle-dot"></span></div>
 
 		</div>
 
@@ -52,8 +52,8 @@
 	<div class="wrapper">
 	<div class="bottom-sticky wrapped-bottom-sticky">
 					
-		<div class="bottom-panel-btn">	
-			<span class="submit">Okay</span>
+		<div class="bottom-panel-btn" onclick="Search()">	
+			<span class="submit">Search</span>
 		</div>
 
 	</div>
@@ -61,17 +61,10 @@
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script src="./17. calendar.js"></script>
 	<script type="text/javascript">
 		
-		$(function() {
-		    $( "#ui-cal" ).datepicker({
-		        altField: "#showHere",
-		        altFormat: "DD, d MM, yy",
-		        showOtherMonths: true,
-		        minDate: new Date()
-		    });
-		});
-
+		
 
 	</script>
 

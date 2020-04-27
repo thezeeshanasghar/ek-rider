@@ -1,11 +1,30 @@
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
 var rider = JSON.parse(localStorage.getItem("Rider"));
 $(document).ready(function () {
     PaymentPending(rider.Id);
 });
+var SearchBy = getUrlParameter('SearchBy');
+console.log(SearchBy);
 function PaymentPending(id) {
-   
+   var URL="";
+  SearchBy=="All"?URL=(SERVER+"Order/Rider/"+id+"/Pending"):URL=(SERVER+"Order/Rider/"+id+"/OrderBydate/"+SearchBy)
+  
     $.ajax({
-        url: SERVER + "order/rider/"+id+'/pending',
+        url:URL ,
         type: "GET",
         dataType: "json",
         contentType: "application/json;charset=utf-8",
